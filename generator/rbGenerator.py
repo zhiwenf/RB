@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 #############################################################################################
-# Gnerator graph instances baced on RB model                                                # 
+# Generate graph instances baced on RB model                                                # 
 # Each variable in RB(CSP) corresponding d vertices in the graph,                           #
 # where d is the damain size of a varible. In RB model d will be n^(alpha)                  #
 # Edges containing 1) each pair of value in the domain of every variable. 2)                #
@@ -94,7 +94,7 @@ def generate_without_hos(n, a, p, r):
     print_comment(n, a, p, r)
     output_graph(n, d, edges)
 
-#generate a solution in the graph random
+#hide a solution in the graph random
 #i.e keep a consistent assignment between each pair of variables
 def hide_solution(n, d):
     sol = set()
@@ -108,9 +108,8 @@ def hide_solution(n, d):
 #generate a graph baced on RB model with hiding optimum solution
 #n, a, p, r are the paramters in RB model    
 def generate_with_hos(n, a, p, r):
-    
+    #+0.5 to rounding (the nearest integer to the float)
     d = int(pow(n, a) + 0.5)
-    
     l1 = int(p * pow(n, 2 * a) + 0.5)
     l2 = int(r * n * math.log(n) + 0.5)
     
