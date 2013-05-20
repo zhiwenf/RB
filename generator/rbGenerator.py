@@ -1,5 +1,32 @@
 #!/usr/bin/env python
 
+#############################################################################################
+# Gnerator graph instances baced on RB model                                                # 
+# Each variable in RB(CSP) corresponding d vertices in the graph,                           #
+# where d is the damain size of a varible. In RB model d will be n^(alpha)                  #
+# Edges containing 1) each pair of value in the domain of every variable. 2)                #
+# no-good(conflict) assignment between each pair of varibales.                              #
+# The Minimum Vertex Cover(MVC) corresponds to a solution in the RB(CSP) instance.          #
+#############################################################################################
+
+############################################################################################
+#usage: rbGenerator.py [-h] [-n integer] [-a float] [-p float] [-r float]
+#                      [--hide] [-s int]
+#
+#Generate graph baced on RB model
+#
+#optional arguments:
+#  -h, --help          show this help message and exit
+#  -n integer          integer N: the number of variable in RB model
+#  -a float            float a(alpha): the parameter a(alpha) in RB model
+#  -p float            float p: the parameter p in RB model
+#  -r float            float r: the parameter r in RB model
+#  --hide              hide(default false):hide an optimum solution or not
+#  -s int, --seed int  s(seed): seed for random number generator, default is
+#                      current system time
+#
+###########################################################################################
+
 
 import sys
 import math
@@ -8,6 +35,10 @@ import getopt
 import argparse
 
 #put information at the header of the benchmark file
+#c comment
+#c comment
+#c ...
+#c 
 def print_comment(n, a, p, r):
     print "c graph  baced on rb Model"
     print "c parameter n=" + str(n) + " a=" + str(a) + " p=" + str(p) + " r=" + str(r)
@@ -16,8 +47,6 @@ def print_comment(n, a, p, r):
     print "c "
 
 #output the graph(vertices and edges)
-#c comment
-#c comment
 #p edge V E 
 #e v1 v2
 #...
