@@ -9,15 +9,15 @@
 #############################################################################################
 
 ############################################################################################
-# It support fllowing instance type
+# It supports following instance type:
 # Satifiability(SAT) instance with directed encode #TODO Log encode#
-# Minmum vertex cover(VC) instances
+# Minimum vertex cover(VC) instances
 ############################################################################################
 
 ############################################################################################
 #usage: rbGenerator.py [-h] [--hide] [-e ENCODE] [-s SEED] n a p r
 #
-#Generate graph baced on RB model
+#Generate graph based on RB model
 #
 #positional arguments:
 #  n                     integer N: the number of variable in RB model
@@ -199,7 +199,7 @@ def generate(hide, n, a, p, r, ins_type):
   
 def main():
   #parse command parameters  
-  parser = argparse.ArgumentParser(description="Generate graph baced on RB model")
+  parser = argparse.ArgumentParser(description="Generate graph based on RB model, now only support satisfiability(SAT) and vertex cover(VC) instances")
   parser.add_argument('n', metavar='n', type=int,  help="integer N: the number of variable in RB model")
   parser.add_argument("a", metavar='a', type=float, help="float a(alpha): the parameter a(alpha) in RB model")
   parser.add_argument("p", metavar='p', type=float, help="float p: the parameter p in RB model")
