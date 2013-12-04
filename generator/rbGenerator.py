@@ -1,20 +1,11 @@
 #!/usr/bin/env python
 
 #############################################################################################
-<<<<<<< HEAD
 # Generate graph instances baced on RB model                        # 
 # Each variable in RB(CSP) corresponding d vertices in the graph,             #
 # where d is the damain size of a varible. In RB model d will be n^(alpha)          #
 # Edges containing 1) each pair of value in the domain of every variable. 2)        #
 # no-good(conflict) assignment between each pair of varibales.                #
-=======
-# Gnerator graph instances baced on RB model                                                # 
-# Each variable in RB(CSP) corresponding d vertices in the graph,                           #
-# where d is the damain size of a varible. In RB model d will be n^(alpha)                  #
-# Edges containing 1) each pair of value in the domain of every variable. 2)                #
-# no-good(conflict) assignment between each pair of varibales.                              #
-# The Minimum Vertex Cover(MVC) corresponds to a solution in the RB(CSP) instance.          #
->>>>>>> parent of d72c44b... correct mistake in comment
 #############################################################################################
 
 ############################################################################################
@@ -142,7 +133,7 @@ def generate_without_hos(n, a, p, r, ins_type):
     print_comment(n, a, p, r, "vertex cover")
     output_graph(n, d, edges)
 
-#generate a solution in the graph random
+#hide a solution in the graph random
 #i.e keep a consistent assignment between each pair of variables
 def hide_solution(n, d):
   sol = set()
@@ -154,7 +145,6 @@ def hide_solution(n, d):
   return sol
 
 #generate a graph baced on RB model with hiding optimum solution
-<<<<<<< HEAD
 #n, a, p, r are the paramters in RB model  
 def generate_with_hos(n, a, p, r, int_type):
   #+0.5 to rounding (the nearest integer to the float)
@@ -163,17 +153,6 @@ def generate_with_hos(n, a, p, r, int_type):
   l2 = int(r * n * math.log(n) + 0.5)
   
   edges=[[[] for v1 in range(0, n)] for v2 in range(0, n)]  
-=======
-#n, a, p, r are the paramters in RB model    
-def generate_with_hos(n, a, p, r):
-    
-    d = int(pow(n, a) + 0.5)
-    
-    l1 = int(p * pow(n, 2 * a) + 0.5)
-    l2 = int(r * n * math.log(n) + 0.5)
-    
-    edges=[[[] for v1 in range(0, n)] for v2 in range(0, n)]    
->>>>>>> parent of d72c44b... correct mistake in comment
 #random selecton a pair of variable for l2 times
   var_list = range(0, n)
   sol = hide_solution(n, d)
