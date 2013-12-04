@@ -1,0 +1,18 @@
+usage: rbGenerator.py [-h] [--hide] [-e ENCODE] [-s SEED] n a p r
+
+Generate graph baced on RB model
+
+positional arguments:
+  n                     integer N: the number of variable in RB model
+  a                     float a(alpha): the parameter a(alpha) in RB model
+  p                     float p: the parameter p in RB model
+  r                     float r: the parameter r in RB model
+
+optional arguments:
+  -h, --help            show this help message and exit
+  --hide                hide(default false):hide an optimum solution or not
+  -e ENCODE, --encode ENCODE
+                        encode type(default SAT:satifiability instance),
+                        VC:vertex cover instance
+  -s SEED, --seed SEED  s(seed): seed for random number generator, default is
+                        current system time
