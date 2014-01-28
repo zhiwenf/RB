@@ -75,8 +75,9 @@ def output_sat(n, d, edges):
       print("%d %d 0"%(-(d * v1 + d1 + 1), -(d * v1 + d2 + 1)))
     
     for v2 in range(v1+1, n):
+      #print v1, v2, edges[v1][v2]
       for (d1,d2) in edges[v1][v2]:
-        print("%d %d 0"%(v1*d+d1+1, v2*d+d2+1))
+        print("%d %d 0"%(-(v1*d+d1+1), -(v2*d+d2+1)))
 
 
 #output the graph(vertices and edges)
@@ -137,11 +138,16 @@ def generate_without_hos(n, a, p, r, ins_type):
 #i.e keep a consistent assignment between each pair of variables
 def hide_solution(n, d):
   sol = set()
+  sv=[0 for i in range(0, n)]
+  for v in range(0, n):
+    sv[v] = random.randint(0, d-1)
+    #print v * d + sv[v] + 1
+  
   for v1 in range(0, n):
     for v2 in range(v1+1, n):
-      x1 = random.randint(0, d-1)
-      x2 = random.randint(0, d-1)
-      sol.add((v1 * n + x1, v2 * n + x2))
+      x1 = sv[v1]
+      x2 = sv[v2] 
+      sol.add((v1 * d + x1, v2 * d + x2))
   return sol
 
 #generate a graph baced on RB model with hiding optimum solution
@@ -170,14 +176,15 @@ def generate_with_hos(n, a, p, r, ins_type):
     nogoods = random.sample(all_relation, l1+1)
     conflict_with_sol = False
     for e in nogoods[1:]:
-      x1 = v1 * n + e[0]
-      x2 = v2 * n + e[1]
-      if (x1, v2) not in sol:
+      x1 = v1 * d + e[0]
+      x2 = v2 * d + e[1]
+      if (x1, x2) not in sol:
         edges[v1][v2].append(e)
+        #print "append", v1, v2, e
       else:
         conflict_with_sol = True
-    if conflict_with_sol:
-      edges.append(nogoods[0])
+    #if conflict_with_sol:
+     # edges.append(nogoods[0])
 
   if (ins_type == "SAT"):
     print_comment(n, a, p, r, "satifiability")
@@ -209,19 +216,6 @@ def main():
   parser.add_argument('-s', '--seed', action='store', type=int, help="s(seed): seed for random number generator, default is current system time")
 
   args = vars(parser.parse_args())
-  #all the parameters in RB model should be assigned a value
-  #if args["n"] == None:
-  #  print "-n can not be empty"
-  #  sys.exit(1)
-  #if args["a"] == None:
-  #  print "-a can not be empty"
-  #  sys.exit(1)
-  #if args["p"] == None:
-  #  print "-p can not be empty"
-  #  sys.exit(1)
-  #if args["r"] == None:
-  #  print "-r can not be empty"
-  #  sys.exit(1)
   random.seed(args["seed"]) # seed will be none if not using the -s(--seed) option
   generate(args["hide"], args["n"], args["a"], args["p"], args["r"], args["encode"])
 
